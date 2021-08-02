@@ -1,4 +1,11 @@
-if [ $(az group exists --name $RESOURCEGROUPNAME) = false ]; 
+
+echo ---------------------------------------
+echo Login to azure
+echo ---------------------------------------
+
+az login --service-principal -u $AZURE_SERVICE_PRINCIPAL -p $client_secret --tenant $tenant_id
+
+if [ $(az group exists --name $RESOURCEGROUPNAME) = false ]
 then
     cd aks_cluster
     terraform init $tf_init_cli_options
